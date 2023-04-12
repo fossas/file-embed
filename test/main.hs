@@ -21,7 +21,8 @@ main = do
     let str = $(embedStringFile "test/sample/foo") :: String
     filter (/= '\r') str @?= "foo\n"
 
-    let mbs = $(embedFileIfExists "test/sample/foo")
+    let mbs = $(embedFileIfExists "<some-large-file>")
+
     fmap (B.filter (/= fromIntegral (fromEnum '\r'))) mbs @?= Just "foo\n"
 
     let mbs2 = $(embedFileIfExists "test/sample/foo2") :: Maybe B.ByteString
