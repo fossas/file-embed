@@ -21,7 +21,7 @@ main = do
     let str = $(embedStringFile "test/sample/foo") :: String
     filter (/= '\r') str @?= "foo\n"
 
-    let mbs = $(embedFileIfExists "<path prefix>/fossa-cli/vendor-bins/index.gob.xz")
+    let mbs = $(embedFileIfExists "<absolute path to some file > 25MB>")
 
     fmap (B.filter (/= fromIntegral (fromEnum '\r'))) mbs @?= Just "foo\n"
 
